@@ -1,0 +1,14 @@
+/var/projetos/WebhookTester/WebhookTester.Presentation/bin/Debug/netcoreapp2.1/WebhookTester.Presentation.deps.json
+/var/projetos/WebhookTester/WebhookTester.Presentation/bin/Debug/netcoreapp2.1/WebhookTester.Presentation.runtimeconfig.json
+/var/projetos/WebhookTester/WebhookTester.Presentation/bin/Debug/netcoreapp2.1/WebhookTester.Presentation.runtimeconfig.dev.json
+/var/projetos/WebhookTester/WebhookTester.Presentation/bin/Debug/netcoreapp2.1/WebhookTester.Presentation.dll
+/var/projetos/WebhookTester/WebhookTester.Presentation/bin/Debug/netcoreapp2.1/WebhookTester.Presentation.pdb
+/var/projetos/WebhookTester/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.csprojAssemblyReference.cache
+/var/projetos/WebhookTester/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.csproj.CoreCompileInputs.cache
+/var/projetos/WebhookTester/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.RazorAssemblyInfo.cache
+/var/projetos/WebhookTester/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.RazorAssemblyInfo.cs
+/var/projetos/WebhookTester/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.AssemblyInfoInputs.cache
+/var/projetos/WebhookTester/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.AssemblyInfo.cs
+/var/projetos/WebhookTester/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.RazorTargetAssemblyInfo.cache
+/var/projetos/WebhookTester/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.dll
+/var/projetos/WebhookTester/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.pdb

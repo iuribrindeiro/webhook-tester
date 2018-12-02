@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  webhooktester.presentation:
+    image: ${DOCKER_REGISTRY}webhooktesterpresentation
+    build:
+      context: WebhookTester.Presentation
+      dockerfile: Dockerfile
+    enviroment:
+      - ASPNETCORE_ENVIRONMENT=Development
