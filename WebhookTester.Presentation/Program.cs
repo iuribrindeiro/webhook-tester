@@ -24,7 +24,18 @@ namespace WebhookTester.Presentation
                     var configurationBuilder = new ConfigurationBuilder();
                     configurationBuilder.AddEnvironmentVariables();
                     config.AddConfiguration(configurationBuilder.Build());
-                }).UseStartup<Startup>();
+                })
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+
+                    if (hostingContext.HostingEnvironment.IsDevelopment())
+                        logging.AddDebug();
+
+                    logging.AddConsole();
+                    logging.AddEventSourceLogger();
+                })
+                .UseStartup<Startup>();
 
     }
 }
