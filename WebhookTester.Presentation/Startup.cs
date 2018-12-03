@@ -10,8 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using WebhookTester.Presentation.Hubs;
-using WebhookTester.Presentation.Services;
 
 namespace WebhookTester.Presentation
 {
@@ -33,8 +31,6 @@ namespace WebhookTester.Presentation
                 options.Configuration = Configuration.GetValue<string>("RedisHost");
                 options.InstanceName = Configuration.GetValue<string>("RedisInstanceName");
             });
-            services.AddSignalR();
-            services.AddScoped<IRequestService, RequestService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,13 +44,9 @@ namespace WebhookTester.Presentation
             {
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseMvc();
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<RequestHistoryHub>("/request-history");
-            });
         }
     }
 }

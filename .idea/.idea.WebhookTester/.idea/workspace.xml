@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ea87afa-b48b-4e5a-9e66-e0d095be161b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/WebhookTester.Presentation/Exceptions/RequestNaoExisteException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebhookTester/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebhookTester/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebhookTester/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebhookTester/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/Controllers/HomeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/Hubs/RequestHistoryHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/Hubs/RequestHistoryHub.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/Models/Request.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/Models/Request.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/Services/IRequestService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/Services/IRequestService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/Services/RequestService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/Services/RequestService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/bin/Debug/netcoreapp2.1/WebhookTester.Presentation.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/bin/Debug/netcoreapp2.1/WebhookTester.Presentation.deps.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/bin/Debug/netcoreapp2.1/WebhookTester.Presentation.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/bin/Debug/netcoreapp2.1/WebhookTester.Presentation.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/bin/Debug/netcoreapp2.1/WebhookTester.Presentation.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/bin/Debug/netcoreapp2.1/WebhookTester.Presentation.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/obj/Debug/netcoreapp2.1/WebhookTester.Presentation.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/obj/WebhookTester.Presentation.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/obj/WebhookTester.Presentation.csproj.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/obj/WebhookTester.Presentation.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/obj/WebhookTester.Presentation.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebhookTester.Presentation/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebhookTester.Presentation/obj/project.assets.json" afterDir="false" />
-    </list>
+    <list default="true" id="8ea87afa-b48b-4e5a-9e66-e0d095be161b" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,11 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Startup.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Startup.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebhookTester.Presentation/Startup.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="32" column="83" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="83" />
+            <state relative-caret-position="242">
+              <caret line="32" column="84" lean-forward="true" selection-start-line="32" selection-start-column="84" selection-end-line="32" selection-end-column="84" />
               <folding>
                 <marker date="1543801621455" expanded="false" signature="6:484" ph="..." />
                 <marker date="1543801621455" expanded="true" signature="522:1978" ph="{...}" />
@@ -99,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomeController.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HomeController.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebhookTester.Presentation/Controllers/HomeController.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13">
-              <caret line="74" column="53" lean-forward="true" selection-start-line="74" selection-start-column="53" selection-end-line="74" selection-end-column="53" />
+            <state relative-caret-position="-429">
+              <caret line="22" column="50" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="50" />
               <folding>
                 <marker date="1543800939033" expanded="true" signature="6:296" ph="..." />
                 <marker date="1543800939033" expanded="true" signature="346:3816" ph="{...}" />
@@ -361,12 +342,12 @@
       <workItem from="1543708573081" duration="6781000" />
       <workItem from="1543782338115" duration="690000" />
       <workItem from="1543783111136" duration="12768000" />
-      <workItem from="1543797786904" duration="3722000" />
+      <workItem from="1543797786904" duration="3852000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24434000" />
+    <option name="totallyTimeSpent" value="24564000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -379,7 +360,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="2560" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Errors In Solution" order="3" />
@@ -394,7 +374,7 @@
       <window_info anchor="bottom" id="Build" order="9" weight="0.3293348" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39694658" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39694658" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -825,34 +805,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebhookTester.Presentation/Controllers/HomeController.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="74" column="53" lean-forward="true" selection-start-line="74" selection-start-column="53" selection-end-line="74" selection-end-column="53" />
-          <folding>
-            <marker date="1543800939033" expanded="true" signature="6:296" ph="..." />
-            <marker date="1543800939033" expanded="true" signature="346:3816" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="429:3814" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="682:800" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="890:1233" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="916:1036" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="1076:1223" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="1377:2545" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="1403:2205" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="1637:1881" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="2252:2325" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="2365:2499" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="2663:3271" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="2689:2957" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="3013:3086" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="3126:3261" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="3379:3808" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="3405:3632" ph="{...}" />
-            <marker date="1543800939033" expanded="true" signature="3662:3798" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebhookTester.Presentation/Services/RequestService.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
@@ -884,8 +836,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebhookTester.Presentation/Startup.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="32" column="83" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="83" />
+        <state relative-caret-position="242">
+          <caret line="32" column="84" lean-forward="true" selection-start-line="32" selection-start-column="84" selection-end-line="32" selection-end-column="84" />
           <folding>
             <marker date="1543801621455" expanded="false" signature="6:484" ph="..." />
             <marker date="1543801621455" expanded="true" signature="522:1978" ph="{...}" />
@@ -897,6 +849,34 @@
             <marker date="1543801621455" expanded="true" signature="1604:1681" ph="{...}" />
             <marker date="1543801621455" expanded="true" signature="1698:1757" ph="{...}" />
             <marker date="1543801621455" expanded="true" signature="1860:1958" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebhookTester.Presentation/Controllers/HomeController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-429">
+          <caret line="22" column="50" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="50" />
+          <folding>
+            <marker date="1543800939033" expanded="true" signature="6:296" ph="..." />
+            <marker date="1543800939033" expanded="true" signature="346:3816" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="429:3814" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="682:800" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="890:1233" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="916:1036" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="1076:1223" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="1377:2545" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="1403:2205" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="1637:1881" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="2252:2325" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="2365:2499" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="2663:3271" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="2689:2957" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="3013:3086" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="3126:3261" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="3379:3808" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="3405:3632" ph="{...}" />
+            <marker date="1543800939033" expanded="true" signature="3662:3798" ph="{...}" />
           </folding>
         </state>
       </provider>
