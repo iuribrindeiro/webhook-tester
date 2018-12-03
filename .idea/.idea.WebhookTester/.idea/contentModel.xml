@@ -10,8 +10,10 @@
         <e p="Dockerfile" t="Include" />
         <e p="Exceptions" t="Include">
           <e p="ClientIdNaoExisteException.cs" t="Include" />
+          <e p="RequestNaoExisteException.cs" t="Include" />
         </e>
         <e p="Hubs" t="Include">
+          <e p="IRequestHistoryHub.cs" t="Include" />
           <e p="RequestHistoryHub.cs" t="Include" />
         </e>
         <e p="Models" t="Include">

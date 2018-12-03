@@ -1,16 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WebhookTester.Presentation.Exceptions;
-using WebhookTester.Presentation.Models;
+using WebhookTester.Presentation.Hubs;
 using WebhookTester.Presentation.Services;
 
 namespace WebhookTester.Presentation.Controllers
@@ -19,18 +15,20 @@ namespace WebhookTester.Presentation.Controllers
     public class HomeController : ControllerBase
     {
         private readonly IRequestService _requestService;
+        private readonly IHubContext<RequestHistoryHub> _requestHistoryHub;
 
-        public HomeController(IRequestService requestService)
+        public HomeController(IRequestService requestService, IHubContext<RequestHistoryHub> requestHistoryHub)
         {
             _requestService = requestService;
+            _requestHistoryHub = requestHistoryHub;
         }
 
-        [HttpGet("{id:guid}")]
-        public ActionResult Requests(Guid id)
+        [HttpGet("{clientId:guid}")]
+        public ActionResult Requests(Guid clientId)
         {
             try
             {
-                return new OkObjectResult(_requestService.GetRequestsByClientId(id));
+                return new OkObjectResult(_requestService.GetRequestsByClientId(clientId));
             }
             catch (Exception exception)
             {
@@ -38,8 +36,8 @@ namespace WebhookTester.Presentation.Controllers
             }
         }
 
-        [Route("teste-request/{id:guid}")]
-        public ActionResult SaveRequest(Guid id, [FromBody] dynamic requestBody = null)
+        [Route("teste-request/{clientId:guid}")]
+        public ActionResult SaveRequest(Guid clientId, [FromBody] dynamic requestBody = null)
         {
             try
             {
@@ -52,17 +50,56 @@ namespace WebhookTester.Presentation.Controllers
                     requestData = JObject.FromObject(dict.AllKeys.ToDictionary(k => k, k => dict[k]));
                 }
 
-                _requestService.Save(Models.Request.Create(requestData, HttpContext.Request.Method, id));
+                var request = Models.Request.Create(requestData, HttpContext.Request.Method, clientId);
+                _requestService.Save(request);
+                _requestHistoryHub.Clients.User(request.ClientId.ToString())
+                    .SendAsync("RequestRecebidoEvent", new {request = request});
             }
             catch (ClientIdNaoExisteException)
             {
-                return new NotFoundResult();    
+                return new NotFoundResult();
             }
-            catch(Exception exception) {
+            catch (Exception exception)
+            {
                 return new BadRequestObjectResult(new {Message = "Ocorreu um erro ao salvar o request"});
             }
-            
+
             return new OkResult();
+        }
+
+        [HttpDelete("remover/{id:guid}/{clientId:guid}")]
+        public ActionResult Delete(Guid id, Guid clientId)
+        {
+            try
+            {
+                _requestService.Delete(id, clientId);
+                _requestHistoryHub.Clients.User(clientId.ToString())
+                    .SendAsync("RequestRemovidoEvent", new {requestId = id});
+                return new OkResult();
+            }
+            catch (RequestNaoExisteException exception)
+            {
+                return new NotFoundResult();
+            }
+            catch (Exception exception)
+            {
+                return new BadRequestObjectResult(new {Message = "Ocorreu um erro ao remover o request"});
+            }
+        }
+
+        [HttpDelete("remover-todos/{clientId:guid}")]
+        public ActionResult DeleteAll(Guid clientId)
+        {
+            try
+            {
+                _requestService.DeleteAll(clientId);
+                _requestHistoryHub.Clients.User(clientId.ToString()).SendAsync("RequestsEsvaziadosEvent");
+                return new OkResult();
+            }
+            catch (Exception)
+            {
+                return new BadRequestObjectResult(new {Message = "Ocorreu um erro ao limpar os requests"});
+            }
         }
     }
 }

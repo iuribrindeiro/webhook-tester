@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WebhookTester.Presentation.Hubs;
 using WebhookTester.Presentation.Services;
 
 namespace WebhookTester.Presentation
@@ -29,8 +30,8 @@ namespace WebhookTester.Presentation
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDistributedRedisCache(options =>
             {
-                options.Configuration = "localhost";
-                options.InstanceName = "redis-cache";
+                options.Configuration = Configuration.GetValue<string>("RedisHost");
+                options.InstanceName = Configuration.GetValue<string>("RedisInstanceName");
             });
             services.AddSignalR();
             services.AddScoped<IRequestService, RequestService>();
@@ -52,7 +53,7 @@ namespace WebhookTester.Presentation
             app.UseMvc();
             app.UseSignalR(routes =>
             {
-                routes.MapHub<>("request-history");
+                routes.MapHub<RequestHistoryHub>("/request-history");
             });
         }
     }

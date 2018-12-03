@@ -24,6 +24,13 @@ namespace WebhookTester.Presentation.Services
             _cache = cache;
             _logger = logger;
         }
+
+        private void CreateNewRequestStorage(Guid clientId)
+        {
+            var options = new DistributedCacheEntryOptions();
+            options.SetSlidingExpiration(TimeSpan.FromHours(2));
+            _cache.Set(clientId.ToString(), Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(new Request[]{})), options);
+        }
         
         public Request[] GetRequestsByClientId(Guid clientId)
         {
@@ -32,9 +39,7 @@ namespace WebhookTester.Presentation.Services
                 var cacheData = _cache.Get(clientId.ToString());
                 var requests = new Request[]{};
                 if (cacheData == null) {
-                    var options = new DistributedCacheEntryOptions();
-                    options.SetSlidingExpiration(TimeSpan.FromHours(2));
-                    _cache.Set(clientId.ToString(), Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(requests)), options);
+                    CreateNewRequestStorage(clientId);
                 } else {
                     var jsonStr = Encoding.UTF8.GetString(cacheData);
                     requests = JsonConvert.DeserializeObject<Request[]>(jsonStr);
@@ -72,6 +77,51 @@ namespace WebhookTester.Presentation.Services
             }
             catch(Exception exception) {
                 _logger.LogCritical(2, exception, "Erro ao salvar novo request no cache");
+                throw;
+            }
+        }
+
+        public void Delete(Guid requestId, Guid clientId)
+        {
+            try
+            {
+                var cacheData = _cache.Get(clientId.ToString());
+                var requests = new List<Request>();
+                if (cacheData == null)
+                    throw new RequestNaoExisteException(requestId);
+            
+                var jsonStr = Encoding.UTF8.GetString(cacheData);
+                requests = JsonConvert.DeserializeObject<List<Request>>(jsonStr);
+            
+                if (!requests.Any(r => r.Id == requestId))
+                    throw new RequestNaoExisteException(requestId);
+            
+                requests.Remove(requests.Find(r => r.Id == requestId));
+                var options = new DistributedCacheEntryOptions();
+                options.SetSlidingExpiration(TimeSpan.FromHours(2));
+                _cache.Set(clientId.ToString(), Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(requests)),
+                    options);
+            }
+            catch (RequestNaoExisteException)
+            {
+                throw;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogCritical(2, exception, "Erro ao salvar novo request no cache");
+                throw;
+            }
+        }
+
+        public void DeleteAll(Guid clientId)
+        {
+            try
+            {
+                CreateNewRequestStorage(clientId);
+            }
+            catch (Exception exception)
+            {
+                _logger.LogCritical(2, exception, $"Erro ao remover todos os requests do client id: {clientId}");
                 throw;
             }
         }

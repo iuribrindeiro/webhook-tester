@@ -7,5 +7,7 @@ namespace WebhookTester.Presentation.Services
     {
         Request[] GetRequestsByClientId(Guid clientId);
         void Save(Request request);
+        void Delete(Guid requestId, Guid clientId);
+        void DeleteAll(Guid clientId);
     }
 }
