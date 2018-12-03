@@ -6,10 +6,13 @@ services:
   webhooktester.presentation:
     image: ${DOCKER_REGISTRY}webhooktesterpresentation
     build:
-      context: WebhookTester.Presentation
-      dockerfile: Dockerfile
-    enviroment:
+      context: .
+      dockerfile: WebhookTester.Presentation/Dockerfile
+    ports:
+      - 8066:80
+    environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - RedisHost=redis
       - RedisInstanceName=redis-cache
-    depends_on: redis
+    depends_on: 
+      - redis

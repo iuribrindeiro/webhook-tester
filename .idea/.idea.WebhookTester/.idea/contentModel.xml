@@ -4,10 +4,26 @@
     <e p="$USER_HOME$/.Rider2018.1/system/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_WebhookTester.-885294743.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="WebhookTester.Presentation" t="IncludeRecursive">
+        <e p="Controllers" t="Include">
+          <e p="HomeController.cs" t="Include" />
+        </e>
         <e p="Dockerfile" t="Include" />
+        <e p="Exceptions" t="Include">
+          <e p="ClientIdNaoExisteException.cs" t="Include" />
+        </e>
+        <e p="Hubs" t="Include">
+          <e p="RequestHistoryHub.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="Request.cs" t="Include" />
+        </e>
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="IRequestService.cs" t="Include" />
+          <e p="RequestService.cs" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="WebhookTester.Presentation.csproj" t="IncludeRecursive" />

@@ -1,60 +1,64 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using WebhookTester.Presentation.Exceptions;
+using WebhookTester.Presentation.Models;
+using WebhookTester.Presentation.Services;
 
 namespace WebhookTester.Presentation.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     public class HomeController : ControllerBase
     {
-        private readonly IDistributedCache _cache;
-        private readonly ILogger _logger;
+        private readonly IRequestService _requestService;
 
-        public HomeController(IDistributedCache cache, ILogger<HomeController> logger)
+        public HomeController(IRequestService requestService)
         {
-            _cache = cache;
-            _logger = logger;
+            _requestService = requestService;
         }
 
-        [HttpGet("/{id:guid}")]
+        [HttpGet("{id:guid}")]
         public ActionResult Requests(Guid id)
         {
-            var cacheData = _cache.Get(id.ToString());
-            var requests = new object[]{};
-            if (cacheData == null) {
-                var options = new DistributedCacheEntryOptions();
-                options.SetSlidingExpiration(TimeSpan.FromHours(2));
-                _cache.Set(id.ToString(), Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(requests)), options);
-            } else {
-                var jsonStr = Encoding.UTF8.GetString(cacheData);
-                requests = JsonConvert.DeserializeObject<object[]>(jsonStr);
+            try
+            {
+                return new OkObjectResult(_requestService.GetRequestsByClientId(id));
             }
-
-            return new OkObjectResult(requests);
+            catch (Exception exception)
+            {
+                return new BadRequestObjectResult(new {Message = "Ocorreu um erro ao buscar os requests anteriores"});
+            }
         }
 
-        [AcceptVerbs("POST", "GET", "PATCH", "PUT", "DELETE")]
-        [Route("/teste-request/{id:guid}")]
-        public ActionResult<object[]> SaveRequest(Guid id, object requestBody) 
+        [Route("teste-request/{id:guid}")]
+        public ActionResult SaveRequest(Guid id, [FromBody] dynamic requestBody = null)
         {
-            try {
-                var cacheData = _cache.Get(id.ToString());
-                if (cacheData == null)
-                    return new NotFoundResult();
-                
-                var jsonStr = Encoding.UTF8.GetString(cacheData);
-                var cachedRequests = JsonConvert.DeserializeObject<List<object>>(jsonStr);
-                cachedRequests.Add(requestBody);
-                var options = new DistributedCacheEntryOptions();
-                options.SetSlidingExpiration(TimeSpan.FromHours(2));
-                _cache.Set(id.ToString(), Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(cachedRequests)), options);
-            } catch(Exception exception) {
-                _logger.LogCritical(2, exception, "Erro ao salvar novo request no cache");
+            try
+            {
+                JObject requestData = null;
+                if (HttpContext.Request.Method != "GET")
+                    requestData = JsonConvert.DeserializeObject<JObject>(requestBody.ToString());
+                else
+                {
+                    var dict = HttpUtility.ParseQueryString(HttpContext.Request.QueryString.ToString());
+                    requestData = JObject.FromObject(dict.AllKeys.ToDictionary(k => k, k => dict[k]));
+                }
+
+                _requestService.Save(Models.Request.Create(requestData, HttpContext.Request.Method, id));
+            }
+            catch (ClientIdNaoExisteException)
+            {
+                return new NotFoundResult();    
+            }
+            catch(Exception exception) {
                 return new BadRequestObjectResult(new {Message = "Ocorreu um erro ao salvar o request"});
             }
             
