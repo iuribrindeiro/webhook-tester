@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WebhookTester.Presentation.Hubs;
+using WebhookTester.Presentation.Services;
 
 namespace WebhookTester.Presentation
 {
@@ -31,6 +33,13 @@ namespace WebhookTester.Presentation
                 options.Configuration = Configuration.GetValue<string>("RedisHost");
                 options.InstanceName = Configuration.GetValue<string>("RedisInstanceName");
             });
+            services.AddScoped<IRequestService, RequestService>();
+            services.AddSignalR();
+            services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
+            {
+                builder.AllowAnyMethod().AllowAnyHeader()
+                    .AllowAnyOrigin().AllowCredentials();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +55,11 @@ namespace WebhookTester.Presentation
             }
             
             app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<RequestHistoryHub>("/requests");
+            });
             app.UseMvc();
         }
     }

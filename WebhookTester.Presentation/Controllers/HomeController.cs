@@ -37,7 +37,7 @@ namespace WebhookTester.Presentation.Controllers
         }
 
         [Route("teste-request/{clientId:guid}")]
-        public ActionResult SaveRequest(Guid clientId, [FromBody] dynamic requestBody = null)
+        public ActionResult SaveRequest(Guid clientId, [FromBody]dynamic requestBody = null)
         {
             try
             {
@@ -52,8 +52,8 @@ namespace WebhookTester.Presentation.Controllers
 
                 var request = Models.Request.Create(requestData, HttpContext.Request.Method, clientId);
                 _requestService.Save(request);
-                _requestHistoryHub.Clients.User(request.ClientId.ToString())
-                    .SendAsync("RequestRecebidoEvent", new {request = request});
+                _requestHistoryHub.Clients.All
+                    .SendAsync("RequestRecebidoEvent", new {request});
             }
             catch (ClientIdNaoExisteException)
             {
@@ -61,6 +61,7 @@ namespace WebhookTester.Presentation.Controllers
             }
             catch (Exception exception)
             {
+                Request.Body
                 return new BadRequestObjectResult(new {Message = "Ocorreu um erro ao salvar o request"});
             }
 
@@ -73,8 +74,8 @@ namespace WebhookTester.Presentation.Controllers
             try
             {
                 _requestService.Delete(id, clientId);
-                _requestHistoryHub.Clients.User(clientId.ToString())
-                    .SendAsync("RequestRemovidoEvent", new {requestId = id});
+                _requestHistoryHub.Clients.All
+                    .SendAsync("RequestRemovidoEvent", new {requestId = id, clientId});
                 return new OkResult();
             }
             catch (RequestNaoExisteException exception)
@@ -93,7 +94,7 @@ namespace WebhookTester.Presentation.Controllers
             try
             {
                 _requestService.DeleteAll(clientId);
-                _requestHistoryHub.Clients.User(clientId.ToString()).SendAsync("RequestsEsvaziadosEvent");
+                _requestHistoryHub.Clients.All.SendAsync("RequestsEsvaziadosEvent", new {clientId});
                 return new OkResult();
             }
             catch (Exception)
